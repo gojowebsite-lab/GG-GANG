@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Contact</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+form{
+background:white;
+padding:30px;
+border-radius:10px;
+width:350px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+input,textarea{
+width:100%;
+margin:10px 0;
+padding:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+button{
+background:#e74c3c;
+color:white;
+border:none;
+padding:12px;
+width:100%;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="contactForm">
+
+<h2>Contact Us</h2>
+
+<input type="text" id="name" placeholder="Full Name" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<input type="email" id="email" placeholder="Email" required>
+
+<textarea id="message" placeholder="Message"></textarea>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+<script>
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let message=document.getElementById("message").value;
+
+let token="8672002954:AAHiG3ZdlVecz-vFU6HoGCE66IHaww5GXv0";
+let chat_id="8672002954";
+
+let text=
+"📩 New Contact Form\n\n"+
+"👤 Name: "+name+"\n"+
+"📞 Phone: "+phone+"\n"+
+"📧 Email: "+email+"\n"+
+"💬 Message: "+message;
+
+fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(text)}`)
+
+.then(response=>alert("Message Sent Successfully!"))
+
+});
+
+</script>
+
+</body>
+</html>
